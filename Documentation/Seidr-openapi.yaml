@@ -1,0 +1,160 @@
+openapi: 3.0.3
+info:
+  title: Seidr
+  description: 'This is a API draft for the [Seiðr](https://github.com/dominee/seidr) API. '
+  version: 1.0.0
+  contact: {}
+servers:
+- url: https://localhost:8008
+paths:
+  /add:
+    post:
+      tags:
+      - add
+      summary: Add a newentry to Seidr
+      description: This is the main method used to add new entries into Seidr
+      operationId: addANewentryToSeidr
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: <long>
+                name:
+                  type: string
+                  example: <string>
+            examples:
+              Add a newentry to Seidr:
+                value:
+                  id: <long>
+                  name: <string>
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: <long>
+                  name:
+                    type: string
+                    example: <string>
+              examples:
+                Successful operation:
+                  value:
+                    id: <long>
+                    name: <string>
+        '400':
+          description: Invalid input
+          content:
+            text/plain:
+              examples:
+                Invalid input:
+                  value: ''
+        '422':
+          description: Validation exception
+          content:
+            text/plain:
+              examples:
+                Validation exception:
+                  value: ''
+      security:
+      - apiKey: []
+  /stats/uptime:
+    get:
+      tags:
+      - stats
+      - uptime
+      summary: Returns Seidr service uptime
+      description: Returns Seidr service uptime
+      operationId: returnsSeidrServiceUptime
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  non_89:
+                    type: string
+                    example: <integer>
+              examples:
+                successful operation:
+                  value:
+                    non_89: <integer>
+      security:
+      - apiKey: []
+  /stats/entries:
+    get:
+      tags:
+      - stats
+      - entries
+      summary: Returns count of entries in Seidr
+      description: Returns a map of status codes to quantities
+      operationId: returnsCountOfEntriesInSeidr
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  non_89:
+                    type: string
+                    example: <integer>
+              examples:
+                successful operation:
+                  value:
+                    non_89: <integer>
+      security:
+      - apiKey: []
+  /stats:
+    get:
+      tags:
+      - stats
+      summary: Seiddr statistics
+      description: Returns all available statistics
+      operationId: seiddrStatistics
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  non_89:
+                    type: string
+                    example: <integer>
+              examples:
+                successful operation:
+                  value:
+                    non_89: <integer>
+      security:
+      - apiKey: []
+components:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      name: api_key
+      in: header
+security:
+- apiKey: []
+tags:
+- name: add
+- name: stats
+- name: uptime
+- name: entries
+- name: requests
+  description: Total amount of requests - processed, processing errors, backend errors, unauthorized
+- name: rpm
+  description: Count of requests per last minute - processed, processing errors, backend errors, unauthorized
+

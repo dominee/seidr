@@ -1,0 +1,9 @@
+{
+    "meta":{
+        "agent": "burp-proxy",
+        "group": 1234,
+        "rt": 23,
+        "error": False
+    },
+    "response":"BASE64_ENCODED_RESPONSE"
+}

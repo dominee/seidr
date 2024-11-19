@@ -1,0 +1,39 @@
+[seidr]
+ip = 127.0.0.1
+port = 8008
+logfile = './seidr.log'  
+agents = ["zap","burp-proxy","burp-scanner","burp-repeater","seidr-proxy"]
+
+[elasticsearch]
+hosts = ['127.0.0.1']
+username = 'elastic'
+
+# Path to a separate TOML file with a single 'password' key.
+pathToPassword = 'secrets/elasticsearch-password.toml'
+
+# Optionally use TLS to encrypt the connection between Elasticsearch and
+# the connector. If true, and your Elasticsearch cluster uses a private
+# Certificate Authority (CA), you must also configure `pathToCaCertificate`.
+# See also: https://www.elastic.co/guide/en/elasticsearch/reference/current/configuring-tls.html
+secureConnection = false
+
+# Path to a file containing the Elasticsearch cluster's Certificate Authority (CA)
+# certificate(s) in PEM format. If blank, the connector trusts the well-known CAs
+# in the JVM's `cacerts` trust store. Leave this blank if connecting to Elastic Cloud
+# or Amazon OpenSearch Service.
+pathToCaCertificate = ''
+
+# When secure connections are enabled, you can optionally authenticate
+# using a client certificate instead of username & password.
+[elasticsearch.clientCertificate]
+# Authenticate using client certificate? If true, the username
+# and password configured in the [elasticsearch] section are ignored.
+use = false
+
+# Filesystem path to a Java keystore or PKCS12 bundle holding
+# the private key and certificate chain.
+path = 'path/to/elasticsearch-client-cert.p12'
+
+# Filesystem path to a separate TOML file containing the password
+# for the PKCS12 bundle.
+pathToPassword = 'secrets/elasticsearch-client-cert-password.toml'
