@@ -17,3 +17,7 @@ go.work.sum
 
 # env file
 .env
+
+# Keep It Secret, Keep It Safe
+secrets/*
+
